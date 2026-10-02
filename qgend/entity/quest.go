@@ -7,7 +7,10 @@
 
 package entity
 
-import "errors"
+import (
+	"errors"
+	"time"
+)
 
 // Quests are real life short missions, challenges and dares.
 type Quest struct {
@@ -16,6 +19,11 @@ type Quest struct {
 	Description string
 	Level       int
 	Tags        []string
+
+	CreatedBy int64
+	UpdatedBy int64
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 // NewQuest creates a new quest instance.
@@ -33,7 +41,7 @@ func NewQuest(
 	}
 }
 
-// Validate validates the quest instance
+// Validate validates the quest instance.
 func (q *Quest) Validate() error {
 	for _, tag := range q.Tags {
 		if tag == "" {
