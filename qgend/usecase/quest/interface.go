@@ -2,6 +2,9 @@ package quest
 
 import "qgend/entity"
 
+type Repository interface{}
+
+// QuestUsecase defines the quest functionalities.
 type QuestUsecase interface {
 	CreateQuest(title, desc string, level int, tags []string) error
 	FetchQuests(page, limit, level int, tags []string) ([]*entity.Quest, error)

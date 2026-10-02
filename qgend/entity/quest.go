@@ -9,6 +9,7 @@ package entity
 
 import (
 	"errors"
+	"math/rand"
 	"time"
 )
 
@@ -34,6 +35,7 @@ func NewQuest(
 	tags []string,
 ) *Quest {
 	return &Quest{
+		Id:          rand.Int63(),
 		Title:       title,
 		Description: description,
 		Level:       level,
