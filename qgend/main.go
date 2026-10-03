@@ -1,24 +1,17 @@
 package main
 
 import (
-	"context"
 	"log"
-	"log/slog"
 	"net/http"
-	"os"
+
+	"qgend/handler"
 )
 
 func main() {
-	ctx := context.Background()
-
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("OK"))
-	})
+	mux.HandleFunc("/health", handler.Health)
 
-	jsonLogger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
-	jsonLogger.InfoContext(ctx, "Listening on port: 8080")
+	log.Println("Server running on :8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
